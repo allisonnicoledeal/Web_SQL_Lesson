@@ -1,0 +1,11 @@
+<html>
+    <body>
+        <h4><a href="/">Home</a> </h4>
+        <h1>Students: </h1>
+
+        {%for row in students %}
+            <li>
+            <a href="/student?github={{row[2]}}">{{row[0]}} {{row[1]}}</a></li>
+            {% endfor %}
+    </body>
+</html>

@@ -4,6 +4,13 @@ import re
 DB = None
 CONN = None
 
+def get_all_students():
+    query = """SELECT first_name, last_name, github
+            FROM Students"""
+    DB.execute(query, )
+    rows = DB.fetchall()
+    return rows
+
 
 def get_student_by_github(github):
     query = """SELECT first_name, last_name, github FROM Students WHERE github = ?"""
@@ -42,7 +49,8 @@ def give_grade_to_student(github, project, grade):
     print "Successfully gave %s a grade of %s for project %s" % (github, grade, project)
 
 def get_all_grades_for_project(title):
-    query = """SELECT Students.first_name, Students.last_name, Grades.grade, Grades.student_github FROM Students JOIN Grades ON Grades.student_github=Students.github?"""
+    query = """SELECT Students.first_name, Students.last_name, Grades.grade, Grades.student_github 
+    FROM Students JOIN Grades ON Grades.student_github=Students.github WHERE Grades.project_title=?"""
     DB.execute(query, (title,))
     rows = DB.fetchall()
     print "ROWS ARE: " , rows

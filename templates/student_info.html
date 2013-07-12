@@ -1,5 +1,6 @@
 <html>
     <body>
+        <h4><a href="/">Home</a> <a href="/all_students">List of Students</a></h4>
         <h1>Student: {{last_name}},{{first_name}}</h1>
         <h2>Github: {{github}}</h2>
         <p>This student has shown extreme recalcitrance and has generally proved to be unreliable.</p>
@@ -12,7 +13,14 @@
             <a href="/project?title={{row[0]}}">{{row[0]}}</a>: {{row[1]}}</li>
             {% endfor %}
         </ul>
-           
+        <form action="/new_grade">
+        <label>Enter a new project</label>
+        <input type="text" name="new_project" /><br>
+        <label>Enter student's grade for the project</label>
+        <input type="text" name="new_grade" />
+        <input type="hidden" name="github" value="{{github}}" />
+        <input type="submit">
+        </form>    
 
     </body>
 </html>
